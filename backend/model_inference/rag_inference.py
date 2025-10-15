@@ -1,13 +1,14 @@
 """RAG inference."""
-import sys
+import sys  # noqa: I001
 from pathlib import Path
 # Добавить родительскую директорию
 parent_dir = Path(__file__).parent.parent.parent
 sys.path.append(str(parent_dir))
 
-from backend.rag_constructor.rag_construct import RagBuilder
-from backend.vector_db.db_builder import VectorDBBuilder
-from backend.model_loader.loader import MlModelLoader
+from backend.model_loader.loader import MlModelLoader  # noqa: E402, I001
+from backend.rag_constructor.rag_construct import RagBuilder  # noqa: E402
+from backend.vector_db.db_builder import VectorDBBuilder  # noqa: E402
+from torch import cuda  # noqa: E402
 
 DATA_ID = "Den4ikAI/russian_cleared_wikipedia"
 SPLITTER = "train"
@@ -18,7 +19,6 @@ MODEL_ID = "unsloth/Qwen2.5-3B-unsloth-bnb-4bit" # неплохо работае
 TASK_TYPE = "text-generation"
 MARKER = "</think>"
 
-from torch import cuda
 DEVICE = f"cuda:{cuda.current_device()}" if cuda.is_available() else "cpu"
 #TODO @fadingreflection change to logs
 print(f"Current device is: {DEVICE}")
@@ -36,7 +36,7 @@ class RagModelInference:
 
     def rag_system_inference(self):
         qa_chain = self.rag_builder_inst.build_chain()
-        response = qa_chain.invoke("Коротко расскажи про разницу яблок антоновка и яблок сорта белый налив")
+        response = qa_chain.invoke("Расскажи что такое хрущевка")
         print("Ответ:", response["result"].split(MARKER, 1)[1].strip())
         print("\nSource documents:")
         for doc in response["source_documents"]:

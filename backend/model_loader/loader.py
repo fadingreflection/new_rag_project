@@ -1,5 +1,5 @@
 """Ml model loader for token generation. Russian language used for current task."""
-from torch import cuda, float16
+from torch import float16
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
@@ -54,7 +54,3 @@ class MlModelLoader:
             )
         return llm_pipeline
 
-
-# DEVICE = f"cuda:{cuda.current_device()}" if cuda.is_available() else "cpu"
-# #TODO @fadingreflection change to logs
-# print(f"Current device is: {DEVICE}")

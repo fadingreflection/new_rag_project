@@ -6,9 +6,6 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
-# DATA_ID = "Den4ikAI/russian_cleared_wikipedia"
-# SPLITTER = "train"
-# RECORD_KEY = "sample"
 MODEL_ID_SS = "intfloat/multilingual-e5-base"
 DB_DIR = "chroma_ragmini"
 
@@ -50,7 +47,7 @@ class VectorDBBuilder:
         )
         return embeddings
 
-    def get_vector_db(self): #добавить проверку непустого хранилища 
+    def get_vector_db(self): #добавить проверку непустого хранилища
         from pathlib import Path
         path_obj = Path(DB_DIR)
         if path_obj.exists() and path_obj.is_dir() and any(path_obj.iterdir()):
