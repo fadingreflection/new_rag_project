@@ -34,9 +34,9 @@ class RagModelInference:
         self.llm_pipe = self.model_loader_inst.build_pipe()
         self.rag_builder_inst = RagBuilder(self.vectordb, self.llm_pipe)
 
-    def rag_system_inference(self):
+    def rag_system_inference(self, prompt: str):
         qa_chain = self.rag_builder_inst.build_chain()
-        response = qa_chain.invoke("Расскажи что такое хрущевка")
+        response = qa_chain.invoke(prompt)
         print("Ответ:", response["result"].split(MARKER, 1)[1].strip())
         print("\nSource documents:")
         for doc in response["source_documents"]:
@@ -44,4 +44,4 @@ class RagModelInference:
 
 
 inst = RagModelInference()
-inst.rag_system_inference()
+inst.rag_system_inference("Расскажи что такое хрущевка")
