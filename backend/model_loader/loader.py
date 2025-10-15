@@ -7,8 +7,6 @@ from transformers import (
     pipeline,
 )
 
-MODEL_ID = "unsloth/Qwen2.5-3B-unsloth-bnb-4bit" # неплохо работает на русском, нужный размер эмбеддингов 768
-TASK_TYPE = "text-generation"
 
 class MlModelLoader:
     def __init__(self, model_id: str, task_type: str):
@@ -34,7 +32,7 @@ class MlModelLoader:
         #TODO @fadingreflection change to logs
         print("Загружаем модель …")
         model = AutoModelForCausalLM.from_pretrained(
-            MODEL_ID,
+            self.model_id,
             quantization_config=self.bnb_configs,
             device_map="auto",
             trust_remote_code=True,

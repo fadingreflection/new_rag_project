@@ -38,9 +38,9 @@ class RagModelInference:
         qa_chain = self.rag_builder_inst.build_chain()
         response = qa_chain.invoke(prompt)
         print("Ответ:", response["result"].split(MARKER, 1)[1].strip())
-        print("\nSource documents:")
-        for doc in response["source_documents"]:
-            print(doc.page_content[:80], "…")
+        # print("\nSource documents:")
+        # for doc in response["source_documents"]:
+        #     print(doc.page_content[:80], "…")
 
 
 inst = RagModelInference()

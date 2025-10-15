@@ -24,7 +24,7 @@ class VectorDBBuilder:
         ]
         # TODO: @fadingreflection change to logs
         print("Документов:", len(corpus_docs))
-        print(corpus_docs[0].page_content[:200], "…")
+        # print(corpus_docs[0].page_content[:200], "…")
         return corpus_docs
 
     def load_custom_data(self):
